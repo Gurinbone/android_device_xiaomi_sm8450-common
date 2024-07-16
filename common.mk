@@ -522,3 +522,7 @@ PRODUCT_PACKAGES += \
 
 # MiuiCam
 $(call inherit-product-if-exists, device/xiaomi/miuicamera-ingres/device.mk)
+
+# Parts
+PRODUCT_PACKAGES += \
+    XiaomiParts
