@@ -28,7 +28,10 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 $(call inherit-product, vendor/xiaomi/sm8450-common/sm8450-common-vendor.mk)
 
 # Dolby
-$(call inherit-product, hardware/dolby/dolby.mk)
+$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
+
+# MiuiCam
+$(call inherit-product-if-exists, device/xiaomi/miuicamera-ingres/device.mk)
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
