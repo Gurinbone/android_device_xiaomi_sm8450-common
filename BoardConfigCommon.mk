@@ -7,6 +7,9 @@
 # Inherit from the proprietary version
 include vendor/xiaomi/sm8450-common/BoardConfigVendor.mk
 
+# MIUI Camera
+-include device/xiaomi/miuicamera-ingres/BoardConfig.mk
+
 COMMON_PATH := device/xiaomi/sm8450-common
 
 # A/B
