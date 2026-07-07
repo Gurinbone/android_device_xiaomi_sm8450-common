@@ -7,9 +7,6 @@
 # Inherit from the proprietary version
 include vendor/xiaomi/sm8450-common/BoardConfigVendor.mk
 
-# MIUI Camera
--include device/xiaomi/miuicamera-ingres/BoardConfig.mk
-
 COMMON_PATH := device/xiaomi/sm8450-common
 
 # A/B
@@ -211,7 +208,7 @@ $(foreach sku, $(call to-upper, $(DEVICE_MANIFEST_SKUS)), \
         $(if $(TARGET_NFC_SUPPORTED_SKUS),$(COMMON_PATH)/vintf/manifest_no_nfc.xml,) \
     ))
 
-DEVICE_MANIFEST_FILE += $(COMMON_PATH)/hidl/c2_manifest_vendor.xml
+DEVICE_MANIFEST_FILE += device/xiaomi/sm8450-common/hidl/c2_manifest_vendor.xml
 
 ifneq ($(TARGET_NFC_SUPPORTED_SKUS),)
 ODM_MANIFEST_SKUS += $(TARGET_NFC_SUPPORTED_SKUS)
@@ -261,3 +258,6 @@ WIFI_DRIVER_STATE_ON := "ON"
 WIFI_FEATURE_HOSTAPD_11AX := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+# MIUI Camera
+-include device/xiaomi/miuicamera-ingres/BoardConfig.mk

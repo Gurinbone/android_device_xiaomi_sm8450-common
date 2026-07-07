@@ -27,30 +27,6 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Inherit from the proprietary version
 $(call inherit-product, vendor/xiaomi/sm8450-common/sm8450-common-vendor.mk)
 
-# Dolby Vision Flag
-TARGET_INCLUDES_DolbyVision := true
-
-# LunarisDolby - use
-PRODUCT_PACKAGES += \
-    LunarisDolby
-
-# Dolby
-$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
-
-# MiuiCam
-$(call inherit-product-if-exists, device/xiaomi/miuicamera-ingres/device.mk)
-
-# GameKeys
-PRODUCT_PACKAGES += \
-    vendor.lineage.gamekeys-service.default \
-    vendor.lineage.touchinjector-service.default \
-    GameKeys
-
-# Leds
-PRODUCT_PACKAGES += \
-    vendor.lineage.leds-service.default \
-    Leds
-
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -521,3 +497,27 @@ PRODUCT_PACKAGES += \
     firmware_qca6490_wlan_mac.bin_symlink \
     firmware_qca6750_WCNSS_qcom_cfg.ini_symlink \
     firmware_qca6750_wlan_mac.bin_symlink
+
+# Dolby Vision Flag
+TARGET_INCLUDES_DolbyVision := true
+
+# LunarisDolby - use
+PRODUCT_PACKAGES += \
+    LunarisDolby
+
+# Dolby
+$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
+
+# MiuiCam
+$(call inherit-product-if-exists, device/xiaomi/miuicamera-ingres/device.mk)
+
+# GameKeys
+PRODUCT_PACKAGES += \
+    vendor.lineage.gamekeys-service.default \
+    vendor.lineage.touchinjector-service.default \
+    GameKeys
+
+# Leds
+PRODUCT_PACKAGES += \
+    vendor.lineage.leds-service.default \
+    Leds
