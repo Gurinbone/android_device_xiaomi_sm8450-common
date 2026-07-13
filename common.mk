@@ -523,3 +523,7 @@ PRODUCT_PACKAGES += \
     vendor.lineage.leds-service.default \
     Leds
 
+# Parts
+PRODUCT_PACKAGES += \
+    XiaomiParts
+
