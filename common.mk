@@ -498,3 +498,28 @@ PRODUCT_PACKAGES += \
     firmware_qca6490_wlan_mac.bin_symlink \
     firmware_qca6750_WCNSS_qcom_cfg.ini_symlink \
     firmware_qca6750_wlan_mac.bin_symlink
+
+# Dolby
+$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
+
+# Dolby Vision Flag
+TARGET_INCLUDES_DolbyVision := true
+
+# LunarisDolby - use
+PRODUCT_PACKAGES += \
+    LunarisDolby
+
+# MiuiCam
+$(call inherit-product-if-exists, device/xiaomi/miuicamera-ingres/device.mk)
+
+# GameKeys
+PRODUCT_PACKAGES += \
+    vendor.lineage.gamekeys-service.default \
+    vendor.lineage.touchinjector-service.default \
+    GameKeys
+
+# Leds
+PRODUCT_PACKAGES += \
+    vendor.lineage.leds-service.default \
+    Leds
+
