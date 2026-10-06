@@ -526,3 +526,8 @@ $(call inherit-product-if-exists, device/xiaomi/miuicamera-ingres/device.mk)
 # Parts
 PRODUCT_PACKAGES += \
     XiaomiParts
+
+# WiFi Display
+PRODUCT_PACKAGES += \
+    android.media.audio.common.types-V2-cpp:64 \
+    vendor.qti.hardware.display.config-V5-ndk:64
