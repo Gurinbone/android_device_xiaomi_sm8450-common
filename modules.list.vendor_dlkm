@@ -47,3 +47,5 @@ msm-eva.ko
 msm_video.ko
 qca_cld3_qca6490.ko
 qca_cld3_qca6750.ko
+xm_gamekey.ko
+leds-aw22xxx.ko

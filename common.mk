@@ -497,3 +497,15 @@ PRODUCT_PACKAGES += \
     firmware_qca6490_wlan_mac.bin_symlink \
     firmware_qca6750_WCNSS_qcom_cfg.ini_symlink \
     firmware_qca6750_wlan_mac.bin_symlink
+
+# GameKeys
+PRODUCT_PACKAGES += \
+    vendor.lineage.gamekeys-service.default \
+    vendor.lineage.touchinjector-service.default \
+    GameKeys
+
+# Leds
+PRODUCT_PACKAGES += \
+    vendor.lineage.leds-service.default \
+    Leds
+    
