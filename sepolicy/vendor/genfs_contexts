@@ -28,3 +28,13 @@ genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/wakeup u:object_r:sysfs
 
 # Touchscreen
 genfscon sysfs /devices/virtual/touch/touch_dev/bump_sample_rate u:object_r:vendor_sysfs_touch:s0
+
+# AxionOS Performance Tuning Labels
+genfscon proc /sys/vm/vfs_cache_pressure            u:object_r:proc_drop_caches:s0
+genfscon proc /sys/vm/dirty_ratio                   u:object_r:proc_dirty:s0
+genfscon proc /sys/kernel/sched_migration_cost_ns   u:object_r:proc_sched:s0
+
+# Ax Kernel Manager GPU Clock & Devfreq
+genfscon sysfs /devices/platform/soc/3d00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpuclk u:object_r:vendor_sysfs_kgsl_gpuclk:s0
+genfscon sysfs /devices/platform/soc/3d00000.qcom,kgsl-3d0/devfreq/3d00000.qcom,kgsl-3d0 u:object_r:vendor_sysfs_devfreq:s0
+genfscon sysfs /devices/platform/soc/3d00000.qcom,kgsl-3d0/devfreq/3d00000.qcom,kgsl-3d0/max_freq u:object_r:vendor_sysfs_kgsl_max_gpuclk:s0

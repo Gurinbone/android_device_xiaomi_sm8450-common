@@ -1,0 +1,13 @@
+# Axion Engine
+allow system_server sysfs_devices_system_cpu:file rw_file_perms;
+
+allow system_server vendor_sysfs_kgsl:dir search;
+allow system_server vendor_sysfs_kgsl:lnk_file read;
+allow system_server vendor_sysfs_kgsl:file rw_file_perms;
+allow system_server vendor_sysfs_kgsl_gpuclk:file rw_file_perms;
+allow system_server vendor_sysfs_devfreq:dir search;
+allow system_server vendor_sysfs_devfreq:file rw_file_perms;
+
+allow system_server cgroup:file rw_file_perms;
+
+allow system_server vendor_latency_device:chr_file rw_file_perms;
