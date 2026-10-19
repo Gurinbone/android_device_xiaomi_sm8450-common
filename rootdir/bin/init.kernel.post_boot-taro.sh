@@ -88,10 +88,12 @@ echo 0-3 > /dev/cpuset/system-background/cpus
 echo 0 > /proc/sys/walt/sched_boost
 
 # Reset the RT boost, which is 1024 (max) by default.
-echo 0 > /proc/sys/kernel/sched_util_clamp_min_rt_default
+# compromise for Spatial Audio HAL stability (prevents RT throttling)
+#echo 0 > /proc/sys/kernel/sched_util_clamp_min_rt_default
 
 # configure governor settings for silver cluster
-echo "walt" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+# scaling_governor delegated to Axion Kernel Manager
+#echo "walt" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us
 if [ $rev == "1.0" ]; then
@@ -99,7 +101,7 @@ if [ $rev == "1.0" ]; then
 else
 	echo 1267200 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq
 fi
-echo 614400 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
+#echo 614400 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 echo 1 > /sys/devices/system/cpu/cpufreq/policy0/walt/pl
 
 # configure input boost settings
@@ -111,7 +113,8 @@ fi
 echo 100 > /proc/sys/walt/input_boost/input_boost_ms
 
 # configure governor settings for gold cluster
-echo "walt" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
+# scaling_governor delegated to Axion Kernel Manager
+#echo "walt" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/walt/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/walt/up_rate_limit_us
 if [ $rev == "1.0" ]; then
@@ -122,7 +125,8 @@ fi
 echo 1 > /sys/devices/system/cpu/cpufreq/policy4/walt/pl
 
 # configure governor settings for gold+ cluster
-echo "walt" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
+# scaling_governor delegated to Axion Kernel Manager
+#echo "walt" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us
 if [ $rev == "1.0" ]; then
