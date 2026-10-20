@@ -89,7 +89,7 @@ echo 0 > /proc/sys/walt/sched_boost
 
 # Reset the RT boost, which is 1024 (max) by default.
 # compromise for Spatial Audio HAL stability (prevents RT throttling)
-#echo 0 > /proc/sys/kernel/sched_util_clamp_min_rt_default
+echo 700 > /proc/sys/kernel/sched_util_clamp_min_rt_default
 
 # configure governor settings for silver cluster
 # scaling_governor delegated to Axion Kernel Manager
