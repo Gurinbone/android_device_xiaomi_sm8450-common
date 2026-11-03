@@ -116,8 +116,8 @@ on post-fs-data
     mkdir /mnt/vendor/persist/goodix 0770 system system
 
 on property:sys.boot_completed=1
-    # Set thermal mode to mgame
-    write /sys/devices/virtual/thermal/thermal_message/sconfig 20
+    # Set thermal mode to dynamic (ax_kernel_manager : all cpu clock access)
+    write /sys/class/thermal/thermal_message/sconfig 10
 
 on property:persist.sys.xtra-daemon.enabled=*
     restart loc_launcher
