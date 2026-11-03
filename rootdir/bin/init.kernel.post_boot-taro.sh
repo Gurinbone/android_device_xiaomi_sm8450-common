@@ -88,7 +88,8 @@ echo 0-3 > /dev/cpuset/system-background/cpus
 echo 0 > /proc/sys/walt/sched_boost
 
 # Reset the RT boost, which is 1024 (max) by default.
-echo 0 > /proc/sys/kernel/sched_util_clamp_min_rt_default
+# WORKAROUND: Fix spatial audio buffer underrun on Axion OS. Enforce minimum RT task utilization clamp globally
+echo 700 > /proc/sys/kernel/sched_util_clamp_min_rt_default
 
 # configure governor settings for silver cluster
 # scaling_governor delegated to Axion Kernel Manager
