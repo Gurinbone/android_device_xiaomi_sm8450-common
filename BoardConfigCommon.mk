@@ -49,6 +49,9 @@ TARGET_USES_QCOM_MM_AUDIO := true
 TARGET_BOOTLOADER_BOARD_NAME := taro
 TARGET_NO_BOOTLOADER := true
 
+# Build
+BUILD_BROKEN_DUP_RULES := true
+
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
 
@@ -56,6 +59,7 @@ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # Kernel
+TARGET_USES_KERNEL_PLATFORM := false
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_RAMDISK_USE_LZ4 := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
@@ -66,14 +70,17 @@ BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_KERNEL_IMAGE_NAME := Image
 
+TARGET_KERNEL_ARCH := arm64
+KERNEL_LLVM_SUPPORT := true
+KERNEL_FULL_LLVM := true
 TARGET_KERNEL_ADDITIONAL_FLAGS := TARGET_PRODUCT=$(PRODUCT_DEVICE)
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8450
-TARGET_KERNEL_CONFIG := \
-    gki_defconfig \
-    vendor/waipio_GKI.config \
-    vendor/xiaomi_GKI.config \
-    vendor/$(PRODUCT_DEVICE)_GKI.config \
-    vendor/debugfs.config
+TARGET_KERNEL_CONFIG := gki_defconfig
+KERNEL_FRAGMENT_CONFIG := \
+    arch/arm64/configs/vendor/waipio_GKI.config \
+    arch/arm64/configs/vendor/xiaomi_GKI.config \
+    arch/arm64/configs/vendor/$(PRODUCT_DEVICE)_GKI.config \
+    arch/arm64/configs/vendor/debugfs.config
 
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOT_HEADER_VERSION)
@@ -89,9 +96,7 @@ BOARD_BOOTCONFIG := \
     androidboot.memcg=1 \
     androidboot.usbcontroller=a600000.dwc3
 
-TARGET_BOARD_KERNEL_HEADERS := \
-    kernel/xiaomi/sm8450/include/uapi \
-    kernel/xiaomi/sm8450-modules/qcom/opensource/display-drivers/include/uapi
+TARGET_BOARD_KERNEL_HEADERS := $(COMMON_PATH)/kernel-headers
 
 # Kernel modules
 first_stage_modules := $(strip $(shell cat $(TARGET_KERNEL_SOURCE)/modules.list.msm.waipio))
@@ -239,9 +244,9 @@ BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_PRIVATE_LIB := //hardware/qcom/wlan/qcwcn/wpa_supplicant_8_lib:lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := //hardware/qcom/wlan/qcwcn/wpa_supplicant_8_lib:lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 # (1 STA + 1 AP) or (1 STA + 1 of (P2P or NAN)) or (2 AP) or (2 STA)
 WIFI_HAL_INTERFACE_COMBINATIONS := {{{STA}, 1}, {{AP}, 1}}, {{{STA}, 1}, {{P2P, NAN}, 1}}, {{{AP}, 2}}, {{{STA}, 2}}
 WIFI_DRIVER_BUILT := qca_cld3

@@ -5,6 +5,7 @@
 #
 
 TARGET_BOARD_PLATFORM := taro
+TARGET_USES_KERNEL_PLATFORM := false
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
@@ -366,10 +367,11 @@ PRODUCT_PACKAGES += \
     xiaomi-telephony-stub
 
 PRODUCT_PACKAGES += \
-    qcrilNrDb_vendor
+    libvndfwk_detect_jni.qti_vendor \
+    qcrilNrDb_vendor \
+    QtiTelephonyCompat
 
 PRODUCT_BOOT_JARS += \
-    telephony-ext \
     xiaomi-telephony-stub
 
 PRODUCT_COPY_FILES += \
@@ -383,11 +385,6 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal-service.qti
 
 # Touchscreen
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch-service.xiaomi
-
-$(call soong_config_set, XIAOMI_TOUCH, HIGH_TOUCH_POLLING_PATH, /sys/devices/virtual/touch/touch_dev/bump_sample_rate)
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
