@@ -77,10 +77,10 @@ TARGET_KERNEL_ADDITIONAL_FLAGS := TARGET_PRODUCT=$(PRODUCT_DEVICE)
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8450
 TARGET_KERNEL_CONFIG := gki_defconfig
 KERNEL_FRAGMENT_CONFIG := \
-    arch/arm64/configs/vendor/waipio_GKI.config \
-    arch/arm64/configs/vendor/xiaomi_GKI.config \
-    arch/arm64/configs/vendor/$(PRODUCT_DEVICE)_GKI.config \
-    arch/arm64/configs/vendor/debugfs.config
+    vendor/waipio_GKI.config \
+    vendor/xiaomi_GKI.config \
+    vendor/$(PRODUCT_DEVICE)_GKI.config \
+    vendor/debugfs.config
 
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOT_HEADER_VERSION)
@@ -97,6 +97,7 @@ BOARD_BOOTCONFIG := \
     androidboot.usbcontroller=a600000.dwc3
 
 TARGET_BOARD_KERNEL_HEADERS := $(COMMON_PATH)/kernel-headers
+TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 
 # Kernel modules
 first_stage_modules := $(strip $(shell cat $(TARGET_KERNEL_SOURCE)/modules.list.msm.waipio))
@@ -186,6 +187,10 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+
+SOONG_CONFIG_NAMESPACES += ufsbsg
+SOONG_CONFIG_ufsbsg += ufsframework
+SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
