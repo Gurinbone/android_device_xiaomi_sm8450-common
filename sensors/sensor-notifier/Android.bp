@@ -43,7 +43,7 @@ cc_binary {
     }),
 
     header_libs: [
-        "generated_kernel_headers",
+        "device_kernel_headers",
         "xiaomi_sm8450_sensor_notifier_headers",
     ],
 }
