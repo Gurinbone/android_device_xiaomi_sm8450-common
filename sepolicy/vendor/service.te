@@ -1,3 +1,6 @@
 type hal_lineage_gamekeys_service, hal_service_type, service_manager_type;
 type hal_lineage_touchinjector_service, hal_service_type, service_manager_type;
 type hal_lineage_leds_service, hal_service_type, service_manager_type;
+
+# Allow isolated_compute_app to discover QTI DSP AIDL service (Android 17 sepolicy_tests)
+typeattribute vendor_hal_dspmanager_aidlservice isolated_compute_allowed_service;
