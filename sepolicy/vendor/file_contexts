@@ -72,4 +72,12 @@
 
 # Touchscreen
 /dev/xiaomi-touch u:object_r:touchfeature_device:s0
-/vendor/bin/hw/vendor\.lineage\.touch-service\.xiaomi u:object_r:hal_lineage_touch_default_exec:s0
+
+# GameKeys HAL
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.gamekeys-service\.default u:object_r:hal_lineage_gamekeys_default_exec:s0
+
+# LEDs HAL
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.leds-service\.default u:object_r:hal_lineage_leds_default_exec:s0
+
+# TouchInjector HAL
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.touchinjector-service\.default u:object_r:hal_lineage_touchinjector_default_exec:s0
