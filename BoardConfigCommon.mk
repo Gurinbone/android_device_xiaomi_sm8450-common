@@ -41,6 +41,11 @@ AUDIO_FEATURE_ENABLED_INSTANCE_ID := true
 AUDIO_FEATURE_ENABLED_PAL_HIDL := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 
+$(call soong_config_set,qtiaudio,feature_disabled_dts_eagle,true)
+$(call soong_config_set,qtiaudio,feature_gef_support,true)
+$(call soong_config_set,qtiaudio,feature_instance_id,true)
+$(call soong_config_set,qtiaudio,feature_pal_hidl,true)
+
 BOARD_SUPPORTS_OPENSOURCE_STHAL := true
 
 TARGET_USES_QCOM_MM_AUDIO := true
@@ -51,6 +56,51 @@ TARGET_NO_BOOTLOADER := true
 
 # Build
 BUILD_BROKEN_DUP_RULES := true
+
+# Display
+BUILD_DISPLAY_TECHPACK_SOURCE := true
+TARGET_USES_DRM_PP := true
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_HWC2 := true
+TARGET_USES_QCOM_DISPLAY_BSP := true
+TARGET_USES_COLOR_METADATA := true
+TARGET_HAS_WIDE_COLOR_DISPLAY := true
+TARGET_HAS_HDR_DISPLAY := true
+TARGET_USES_DISPLAY_RENDER_INTENTS := true
+TARGET_USE_COLOR_MANAGEMENT := true
+SF_WCG_COMPOSITION_DATA_SPACE := 143261696
+TARGET_USES_QTI_MAPPER_2_0 := true
+TARGET_USES_QTI_MAPPER_EXTENSIONS_1_1 := true
+TARGET_USES_GRALLOC4 := true
+
+SOONG_CONFIG_NAMESPACES += qtidisplay
+SOONG_CONFIG_qtidisplay := \
+    drmpp \
+    headless \
+    llvmsa \
+    gralloc4 \
+    displayconfig_enabled \
+    udfps \
+    default \
+    var1 \
+    var2 \
+    var3 \
+    panel_dimension_extra_precision \
+    sdmcore_has_is_display_hw_available_func
+SOONG_CONFIG_qtidisplay_drmpp := true
+SOONG_CONFIG_qtidisplay_headless := false
+SOONG_CONFIG_qtidisplay_llvmsa := false
+SOONG_CONFIG_qtidisplay_gralloc4 := true
+SOONG_CONFIG_qtidisplay_displayconfig_enabled := true
+SOONG_CONFIG_qtidisplay_udfps := false
+SOONG_CONFIG_qtidisplay_default := true
+SOONG_CONFIG_qtidisplay_var1 := true
+SOONG_CONFIG_qtidisplay_var2 := true
+SOONG_CONFIG_qtidisplay_var3 := false
+SOONG_CONFIG_qtidisplay_panel_dimension_extra_precision := false
+SOONG_CONFIG_qtidisplay_sdmcore_has_is_display_hw_available_func := true
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
@@ -194,6 +244,10 @@ SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
+
+SOONG_CONFIG_NAMESPACES += rmnetctl
+SOONG_CONFIG_rmnetctl += old_rmnet_data
+SOONG_CONFIG_rmnetctl_old_rmnet_data := true
 
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk

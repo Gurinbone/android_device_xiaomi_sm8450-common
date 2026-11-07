@@ -81,6 +81,7 @@ PRODUCT_PACKAGES += \
     libvolumelistener
 
 $(call soong_config_set, android_hardware_audio, run_64bit, true)
+$(call soong_config_set, tinycompress, enable_extended_compress_format, true)
 
 $(foreach sku, taro diwali cape ukee parrot, \
     $(eval PRODUCT_COPY_FILES += \
@@ -108,6 +109,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-impl:64
 
+$(call soong_config_set_bool,qssi_bluetooth,enable_delay_in_ms,true)
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml
@@ -133,8 +136,17 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.composer-service
 
 PRODUCT_PACKAGES += \
+    libdrmutils \
+    libgpu_tonemapper \
+    libsdedrm
+
+PRODUCT_PACKAGES += \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh
+
+$(call soong_config_set, qtidisplaycommonsys, gralloc_handle_has_no_custom_content_md_reserved_size, true)
+$(call soong_config_set, qtidisplaycommonsys, gralloc_handle_has_no_ubwcp, true)
+$(call soong_config_set, dolby_vision, enabled, true)
 
 PRODUCT_COPY_FILES += \
     hardware/qcom/display/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
