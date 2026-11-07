@@ -51,3 +51,19 @@ install_symlink {
     installed_location: "app/CneApp/lib/arm64/libvndfwk_detect_jni.qti_vendor.so",
     symlink_target: "/vendor/lib64/libvndfwk_detect_jni.qti_vendor.so",
 }
+
+// The framework compatibility_matrix.6.xml shipped by the ROM still references
+// these HIDL HALs, but their definitions were removed from hardware/interfaces.
+// check-vintf-all (checkMatrixHalsHasDefinition) therefore reports them as
+// undefined. Declaring them here only registers the names for that typo check;
+// it builds nothing and has no runtime effect. Drop this once the ROM stops
+// shipping compatibility_matrix.6.xml.
+prebuilt_hidl_interfaces {
+    name: "hidl_compat_fcm6_interfaces",
+    interfaces: [
+        "android.hardware.automotive.sv@1.0::ISurroundViewService",
+        "android.hardware.dumpstate@1.1::IDumpstateDevice",
+        "android.hardware.input.classifier@1.0::IInputClassifier",
+        "android.hardware.ir@1.0::IConsumerIr",
+    ],
+}

@@ -278,8 +278,6 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 
-DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/vintf/framework_manifest.xml
-
 # Verified Boot
 ifeq ($(VENDOR_SECURITY_PATCH),)
 $(error "VENDOR_SECURITY_PATCH must be set for vbmeta rollback index")
