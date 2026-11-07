@@ -3,6 +3,12 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+python_binary_host {
+    name: "generate_qcril_db",
+    main: "generate_qcril_db.py",
+    srcs: ["generate_qcril_db.py"],
+}
+
 filegroup {
     name: "rildb_config_sql_files",
     srcs: [

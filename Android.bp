@@ -44,3 +44,10 @@ install_symlink {
     installed_location: "firmware/wlan/qca_cld/qca6750/wlan_mac.bin",
     symlink_target: "/mnt/vendor/persist/qca6750/wlan_mac.bin",
 }
+
+install_symlink {
+    name: "CneApp.libvndfwk_detect_jni.qti_vendor_symlink",
+    vendor: true,
+    installed_location: "app/CneApp/lib/arm64/libvndfwk_detect_jni.qti_vendor.so",
+    symlink_target: "/vendor/lib64/libvndfwk_detect_jni.qti_vendor.so",
+}
