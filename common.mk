@@ -154,6 +154,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
+# Fastboot
+PRODUCT_PACKAGES += \
+    fastbootd
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \
@@ -356,7 +360,8 @@ $(foreach sku, taro diwali cape ukee, \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/qcom/wlan/qcwcn \
-    hardware/xiaomi
+    hardware/xiaomi \
+    vendor/qcom/opensource/data-ipa-cfg-mgr
 
 # Telephony
 PRODUCT_PACKAGES += \
