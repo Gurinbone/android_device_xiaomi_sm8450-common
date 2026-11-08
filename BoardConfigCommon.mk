@@ -109,85 +109,35 @@ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # Kernel
-TARGET_USES_KERNEL_PLATFORM := false
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_RAMDISK_USE_LZ4 := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
-BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
-BOARD_KERNEL_SEPARATED_DTBO := true
-
-BOARD_KERNEL_BASE        := 0x00000000
-BOARD_KERNEL_PAGESIZE    := 4096
-BOARD_KERNEL_IMAGE_NAME := Image
-
-TARGET_KERNEL_ARCH := arm64
-KERNEL_LLVM_SUPPORT := true
-KERNEL_FULL_LLVM := true
-TARGET_KERNEL_ADDITIONAL_FLAGS := TARGET_PRODUCT=$(PRODUCT_DEVICE)
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8450
-TARGET_KERNEL_CONFIG := gki_defconfig
-KERNEL_FRAGMENT_CONFIG := \
-    vendor/waipio_GKI.config \
-    vendor/xiaomi_GKI.config \
-    vendor/$(PRODUCT_DEVICE)_GKI.config \
-    vendor/debugfs.config
+TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-BOARD_VENDOR_RAMDISK_FRAGMENTS := dlkm
-BOARD_VENDOR_RAMDISK_FRAGMENT.dlkm.KERNEL_MODULE_DIRS := top
-
 BOARD_KERNEL_CMDLINE := \
     disable_dma32=on \
-    mtdoops.fingerprint=$(AOSPA_VERSION)
+    mtdoops.fingerprint=$(AOSPA_VERSION) \
+    swinfo.fingerprint=$(AOSPA_VERSION) \
+    allow_file_spec_access \
+    irqaffinity=0-3 \
+    pelt=8
+
 BOARD_BOOTCONFIG := \
     androidboot.hardware=qcom \
+    androidboot.init_fatal_reboot_target=recovery \
     androidboot.memcg=1 \
     androidboot.usbcontroller=a600000.dwc3
-
-TARGET_BOARD_KERNEL_HEADERS := $(COMMON_PATH)/kernel-headers
-TARGET_HAS_GENERIC_KERNEL_HEADERS := true
-
-# Kernel modules
-first_stage_modules := $(strip $(shell cat $(TARGET_KERNEL_SOURCE)/modules.list.msm.waipio))
-second_stage_modules := $(strip $(shell cat $(COMMON_PATH)/modules.list.second_stage))
-vendor_dlkm_exclusive_modules := $(strip $(shell cat $(COMMON_PATH)/modules.list.vendor_dlkm))
-
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD += $(first_stage_modules)
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD += $(first_stage_modules) $(second_stage_modules)
-BOARD_VENDOR_KERNEL_MODULES_LOAD += $(second_stage_modules) $(vendor_dlkm_exclusive_modules)
-
-BOOT_KERNEL_MODULES += $(first_stage_modules) $(second_stage_modules)
-
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(TARGET_KERNEL_SOURCE)/modules.vendor_blocklist.msm.waipio
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
-
-TARGET_KERNEL_EXT_MODULE_ROOT := kernel/xiaomi/sm8450-modules
-TARGET_KERNEL_EXT_MODULES := \
-	qcom/opensource/mmrm-driver \
-	qcom/opensource/audio-kernel \
-	qcom/opensource/camera-kernel \
-	qcom/opensource/cvp-kernel \
-	qcom/opensource/dataipa/drivers/platform/msm \
-	qcom/opensource/datarmnet/core \
-	qcom/opensource/datarmnet-ext/aps \
-	qcom/opensource/datarmnet-ext/offload \
-	qcom/opensource/datarmnet-ext/shs \
-	qcom/opensource/datarmnet-ext/perf \
-	qcom/opensource/datarmnet-ext/perf_tether \
-	qcom/opensource/datarmnet-ext/sch \
-	qcom/opensource/datarmnet-ext/wlan \
-	qcom/opensource/display-drivers/msm \
-	qcom/opensource/eva-kernel \
-	qcom/opensource/video-driver \
-	qcom/opensource/wlan/qcacld-3.0/.qca6490 \
-	qcom/opensource/wlan/qcacld-3.0/.qca6750
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
+BOARD_USES_VENDOR_DLKMIMAGE := true
 BOARD_FLASH_BLOCK_SIZE := 0x020000 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x0C000000
 BOARD_DTBOIMG_PARTITION_SIZE := 0x01800000
@@ -237,6 +187,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+BOARD_USES_FULL_RECOVERY_IMAGE := true
 
 SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework

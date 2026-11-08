@@ -5,7 +5,6 @@
 #
 
 TARGET_BOARD_PLATFORM := taro
-TARGET_USES_KERNEL_PLATFORM := false
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
