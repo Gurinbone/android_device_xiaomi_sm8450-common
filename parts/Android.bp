@@ -8,6 +8,7 @@ android_app {
     name: "XiaomiParts",
     certificate: "platform",
     srcs: ["src/**/*.java"],
+    resource_dirs: ["res"],
     platform_apis: true,
     privileged: true,
     system_ext_specific: true,
@@ -15,6 +16,7 @@ android_app {
         "androidx.core_core",
         "co.aospa.resources",
         "SettingsLib",
+        "SettingsLibTile",
     ],
     required: [
         "privapp_whitelist_com.xiaomi.settings.xml",

@@ -200,6 +200,11 @@ SOONG_CONFIG_NAMESPACES += rmnetctl
 SOONG_CONFIG_rmnetctl += old_rmnet_data
 SOONG_CONFIG_rmnetctl_old_rmnet_data := true
 
+# Sensors
+$(call soong_config_set_bool,SENSORS_XIAOMI,USES_DOUBLE_TAP_SENSOR,true)
+$(call soong_config_set_bool,SENSORS_XIAOMI,USES_SINGLE_TAP_SENSOR,true)
+$(call soong_config_set_bool,SENSORS_XIAOMI,USES_UDFPS_SENSOR,true)
+
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 

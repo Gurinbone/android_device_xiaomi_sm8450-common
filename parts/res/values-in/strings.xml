@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2023-2025 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="high_touch_polling_rate_title">Tingkat sampel sentuh tinggi</string>
+    <string name="high_touch_polling_rate_summary">Tingkatkan laju sampel layar sentuh untuk mengurangi latensi</string>
+</resources>
