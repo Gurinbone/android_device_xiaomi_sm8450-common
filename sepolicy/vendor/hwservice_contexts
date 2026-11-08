@@ -14,3 +14,7 @@ com.fingerprints.extension::IFingerprintOptical u:object_r:vendor_hal_fingerprin
 
 # Mlipay
 vendor.xiaomi.hardware.mlipay::IMlipayService u:object_r:hal_mlipay_hwservice:s0
+
+# Dolby Vision / PASR
+vendor.dolby.dvs::IDvs u:object_r:hal_dvs_hwservice:s0
+vendor.qti.memory.pasrmanager::IPasrManager u:object_r:vendor_pasrmanager_hwservice:s0

@@ -81,3 +81,9 @@
 
 # TouchInjector HAL
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.touchinjector-service\.default u:object_r:hal_lineage_touchinjector_default_exec:s0
+
+# IR (Xiaomi)
+/(vendor|system/vendor)/bin/hw/android\.hardware\.ir-service\.xiaomi u:object_r:hal_ir_default_exec:s0
+
+# Camera algo libs loaded by MIUI camera
+/vendor/lib(64)?/libmialgoengine\.so u:object_r:same_process_hal_file:s0

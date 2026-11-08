@@ -1,0 +1,25 @@
+# Fixes for AVC denials observed on first enforcing boot
+
+# IR HAL
+
+# Dolby Vision HIDL service
+type hal_dvs_hwservice, hwservice_manager_type;
+allow hal_dvs_default hal_dvs_hwservice:hwservice_manager { add find };
+allow hal_dvs_default hidl_base_hwservice:hwservice_manager add;
+
+# PASR manager hwservice
+type vendor_pasrmanager_hwservice, hwservice_manager_type;
+allow vendor_hal_perf_default vendor_pasrmanager_hwservice:hwservice_manager find;
+
+# SurfaceFlinger -> QSPM HAL
+allow surfaceflinger vendor_hal_qspmhal_default:binder call;
+
+r_dir_file(system_server, vendor_sysfs_battery_supply)
+allow system_server vendor_sysfs_battery_supply:file r_file_perms;
+
+# Health / thermal
+allow mi_thermald sysfs:file r_file_perms;
+
+# Misc vendor domains
+allow vendor_location vendor_location_xtra_daemon:process signal;
+allow hal_camera_default system_data_file:dir search;
