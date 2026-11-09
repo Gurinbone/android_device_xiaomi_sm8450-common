@@ -6,4 +6,6 @@
 <resources>
     <string name="high_touch_polling_rate_title">High touch sampling rate</string>
     <string name="high_touch_polling_rate_summary">Increase touchscreen sampling rate to decrease latency</string>
+    <string name="dc_dimming_title">Anti-flicker mode</string>
+    <string name="dc_dimming_summary">Reduce screen flicker in low light conditions</string>
 </resources>

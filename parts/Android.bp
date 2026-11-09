@@ -17,6 +17,7 @@ android_app {
         "co.aospa.resources",
         "SettingsLib",
         "SettingsLibTile",
+        "vendor.xiaomi.hardware.displayfeature-V1.0-java",
     ],
     required: [
         "privapp_whitelist_com.xiaomi.settings.xml",

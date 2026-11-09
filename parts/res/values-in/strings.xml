@@ -6,4 +6,6 @@
 <resources>
     <string name="high_touch_polling_rate_title">Tingkat sampel sentuh tinggi</string>
     <string name="high_touch_polling_rate_summary">Tingkatkan laju sampel layar sentuh untuk mengurangi latensi</string>
+    <string name="dc_dimming_title">Mode anti-kedip</string>
+    <string name="dc_dimming_summary">Kurangi kedipan layar pada kondisi cahaya redup</string>
 </resources>

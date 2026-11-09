@@ -16,15 +16,19 @@ import com.android.settingslib.drawer.EntriesProvider;
 import com.android.settingslib.drawer.EntryController;
 import com.android.settingslib.drawer.ProviderSwitch;
 import com.xiaomi.settings.R;
+import com.xiaomi.settings.display.DcDimmingUtils;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class DisplayEntriesProvider extends EntriesProvider {
 
     @Override
     protected List<? extends EntryController> createEntryControllers() {
-        return Collections.singletonList(new HighTouchPollingSwitchController());
+        return Arrays.asList(
+                new HighTouchPollingSwitchController(),
+                new DcDimmingSwitchController()
+        );
     }
 
     private class HighTouchPollingSwitchController extends EntryController
@@ -57,6 +61,57 @@ public class DisplayEntriesProvider extends EntriesProvider {
                 return false;
             }
             return HighTouchPollingUtils.setEnabled(context, checked);
+        }
+
+        @Override
+        public String getSwitchErrorMessage(boolean attemptedChecked) {
+            return "";
+        }
+
+        private class DisplayMetaData extends MetaData {
+            DisplayMetaData(String category) {
+                super(category);
+            }
+
+            @Override
+            protected Bundle build() {
+                Bundle bundle = super.build();
+                bundle.putString(META_DATA_PREFERENCE_GROUP_KEY, GROUP_DISPLAY_CONTROLS);
+                return bundle;
+            }
+        }
+    }
+
+    private class DcDimmingSwitchController extends EntryController
+            implements ProviderSwitch {
+        private static final String GROUP_DISPLAY_CONTROLS = "category_other";
+
+        @Override
+        public String getKey() {
+            return DcDimmingUtils.KEY_DC_DIMMING;
+        }
+
+        @Override
+        protected MetaData getMetaData() {
+            DisplayMetaData metaData = new DisplayMetaData(CategoryKey.CATEGORY_DISPLAY);
+            metaData.setTitle(R.string.dc_dimming_title);
+            metaData.setSummary(R.string.dc_dimming_summary);
+            return metaData;
+        }
+
+        @Override
+        public boolean isSwitchChecked() {
+            Context context = getContext();
+            return context != null && DcDimmingUtils.isEnabled(context);
+        }
+
+        @Override
+        public boolean onSwitchCheckedChanged(boolean checked) {
+            Context context = getContext();
+            if (context == null) {
+                return false;
+            }
+            return DcDimmingUtils.setEnabled(context, checked);
         }
 
         @Override

@@ -11,6 +11,10 @@ allow hal_dvs_default hidl_base_hwservice:hwservice_manager add;
 type vendor_pasrmanager_hwservice, hwservice_manager_type;
 allow vendor_hal_perf_default vendor_pasrmanager_hwservice:hwservice_manager find;
 
+# DisplayFeature hwservice
+type vendor_hal_displayfeature_xiaomi_hwservice, hwservice_manager_type;
+
+
 # SurfaceFlinger -> QSPM HAL
 allow surfaceflinger vendor_hal_qspmhal_default:binder call;
 

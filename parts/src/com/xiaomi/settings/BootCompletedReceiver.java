@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Display.HdrCapabilities;
 
+import com.xiaomi.settings.display.DcDimmingUtils;
 import com.xiaomi.settings.touch.HighTouchPollingUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
@@ -36,6 +37,9 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         // Restore High Touch Sampling Rate state
         HighTouchPollingUtils.restoreSamplingRate(context);
+
+        // Restore DC Dimming state
+        DcDimmingUtils.restoreState(context);
 
         // Override HDR types to enable Dolby Vision
         final DisplayManager displayManager = context.getSystemService(DisplayManager.class);
