@@ -26,6 +26,16 @@ on boot
     chown cameraserver cameraserver /sys/class/thermal/thermal_message/flash_state
     chown system system /sys/module/perf_helper/mimd/mimdtrigger
 
+    # Torch permissions
+    chown cameraserver system /sys/class/leds/led:torch_0/brightness
+    chown cameraserver system /sys/class/leds/led:torch_1/brightness
+    chown cameraserver system /sys/class/leds/led:torch_2/brightness
+    chown cameraserver system /sys/class/leds/led:torch_3/brightness
+    chmod 0660 /sys/class/leds/led:torch_0/brightness
+    chmod 0660 /sys/class/leds/led:torch_1/brightness
+    chmod 0660 /sys/class/leds/led:torch_2/brightness
+    chmod 0660 /sys/class/leds/led:torch_3/brightness
+
     # Create persist for camera calibration data
     mkdir /mnt/vendor/persist/camera 0755 system cameraserver
 

@@ -3,6 +3,7 @@ type audio_socket, file_type;
 
 # Camera
 type camera_persist_file, file_type, mlstrustedobject, vendor_persist_type;
+type vendor_sysfs_torch, fs_type, sysfs_type;
 
 # Diag
 type vendor_modem_data_file, data_file_type, file_type;

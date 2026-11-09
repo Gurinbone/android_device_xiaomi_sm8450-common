@@ -271,5 +271,9 @@ WIFI_FEATURE_HOSTAPD_11AX := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
+# Camera
+$(call soong_config_set,libcameraservice,ext_lib,//$(COMMON_PATH):libcameraservice_extension.xiaomi_taro)
+TARGET_CAMERA_SERVICE_EXT_LIB := //$(COMMON_PATH):libcameraservice_extension.xiaomi_taro
+
 # MIUI Camera
 -include device/xiaomi/miuicamera-ingres/BoardConfig.mk
