@@ -106,7 +106,7 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.audio-impl:64
+    audio.bluetooth.default:64
 
 $(call soong_config_set_bool,qssi_bluetooth,enable_delay_in_ms,true)
 
