@@ -23,3 +23,6 @@ allow mi_thermald sysfs:file r_file_perms;
 # Misc vendor domains
 allow vendor_location vendor_location_xtra_daemon:process signal;
 allow hal_camera_default system_data_file:dir search;
+
+# USB HAL
+r_dir_file(vendor_hal_usb_qti, sysfs_udc)

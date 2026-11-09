@@ -1,0 +1,2 @@
+# Allow gpuservice to stat bpf maps for gpu work monitoring
+allow gpuservice fs_bpf:file getattr;
