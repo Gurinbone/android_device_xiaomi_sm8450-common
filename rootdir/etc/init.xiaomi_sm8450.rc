@@ -162,3 +162,9 @@ on property:persist.vendor.ssr.restart_level=ALL_ENABLE
 # Disable WLAN SSR recovery
 on property:persist.vendor.ssr.restart_level=ALL_DISABLE
     write /sys/kernel/cnss/recovery 0
+
+# Disable QMS (Qualcomm Measurement Service)
+service vendor.qms /vendor/bin/qms
+    override
+    disabled
+
