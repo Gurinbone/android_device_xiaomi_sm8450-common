@@ -21,6 +21,9 @@ allow surfaceflinger vendor_hal_qspmhal_default:binder call;
 r_dir_file(system_server, vendor_sysfs_battery_supply)
 allow system_server vendor_sysfs_battery_supply:file r_file_perms;
 
+# System suspend
+r_dir_file(system_suspend_server, vendor_sysfs_battery_supply)
+
 # Health / thermal
 allow mi_thermald sysfs:file r_file_perms;
 
