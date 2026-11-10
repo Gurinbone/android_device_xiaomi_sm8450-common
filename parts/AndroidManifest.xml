@@ -32,5 +32,25 @@
             </intent-filter>
         </receiver>
 
+        <provider
+            android:name=".display.DisplayEntriesProvider"
+            android:authorities="com.xiaomi.settings.display"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
+            </intent-filter>
+        </provider>
+
+        <service
+            android:name=".display.DcDimmingTileService"
+            android:icon="@drawable/ic_dc_dimming"
+            android:label="@string/dc_dimming_title"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
     </application>
 </manifest>
