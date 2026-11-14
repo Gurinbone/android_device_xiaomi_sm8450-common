@@ -325,6 +325,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Perf
+QCOM_COMMON_PATH := device/qcom/common
+include $(QCOM_COMMON_PATH)/system/perf/qti-perf.mk
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/perf/perfconfigstore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfconfigstore.xml
 
