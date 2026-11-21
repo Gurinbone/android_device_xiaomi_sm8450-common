@@ -1,0 +1,23 @@
+# GameKeys
+attribute hal_lineage_gamekeys;
+expandattribute hal_lineage_gamekeys true;
+attribute hal_lineage_gamekeys_client;
+expandattribute hal_lineage_gamekeys_client true;
+attribute hal_lineage_gamekeys_server;
+expandattribute hal_lineage_gamekeys_server false;
+
+# TouchInjector
+attribute hal_lineage_touchinjector;
+expandattribute hal_lineage_touchinjector true;
+attribute hal_lineage_touchinjector_client;
+expandattribute hal_lineage_touchinjector_client true;
+attribute hal_lineage_touchinjector_server;
+expandattribute hal_lineage_touchinjector_server false;
+
+# LEDs
+attribute hal_lineage_leds;
+expandattribute hal_lineage_leds true;
+attribute hal_lineage_leds_client;
+expandattribute hal_lineage_leds_client true;
+attribute hal_lineage_leds_server;
+expandattribute hal_lineage_leds_server false;
