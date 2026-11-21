@@ -1,0 +1,6 @@
+# GameKeys
+hal_client_domain(system_app, hal_lineage_gamekeys)
+hal_client_domain(system_app, hal_lineage_touchinjector)
+
+# LEDs
+hal_client_domain(system_app, hal_lineage_leds)
