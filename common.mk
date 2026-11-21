@@ -520,9 +520,9 @@ $(call inherit-product-if-exists, hardware/dolby/dolby.mk)
 # Dolby Vision Flag
 TARGET_INCLUDES_DolbyVision := true
 
-# LunarisDolby - use
+# Dolby App
 PRODUCT_PACKAGES += \
-    LunarisDolby
+    XiaomiDolby
 
 # MiuiCam
 $(call inherit-product-if-exists, device/xiaomi/miuicamera-ingres/device.mk)
@@ -534,9 +534,3 @@ PRODUCT_PACKAGES += \
 # Media: 64-bit-only device must use mediaserver64 (init imports mediaserver.64bit_${ro.mediaserver.64b.enable})
 PRODUCT_VENDOR_PROPERTIES += \
     ro.mediaserver.64b.enable=true
-
-# Seccomp policies for media services (shipped by AOSPA via qti-media component)
-PRODUCT_COPY_FILES += \
-    device/qcom/common/vendor/seccomp/codec2.software.ext.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/codec2.software.ext.policy \
-    device/qcom/common/vendor/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
-    device/qcom/common/vendor/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
